@@ -6,7 +6,7 @@
          id="WebApp_ID"
          version="2.5">
 
-    <display-name>SP04</display-name>
+    <display-name>SP05</display-name>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>

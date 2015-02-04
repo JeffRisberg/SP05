@@ -6,8 +6,7 @@
     <description>
         Example Spring 3 program.
 
-        Updated version of SP04, built in IntelliJ, to try out caching and
-        LightAdmin
+        Updated version of SP04, built in IntelliJ, to try out caching and LightAdmin.
 
         Based on Maven, with Selenium testing.
     </description>
