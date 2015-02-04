@@ -40,6 +40,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>&nbsp;</th>
+                        <th>&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -50,11 +51,14 @@
                             </td>
                             <td>${user.email}</td>
                             <td>
-                                <form style="margin: 0px" action="delete/${user.id}" method="post">
-                                    <input type="submit"
-                                           class="btn btn-danger btn-mini"
-                                           value="Delete"/>
-                                </form>
+                                <a href="<c:url value="/edit/${user.id}" />" class="btn btn-default" style="padding: 0px 13px">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<c:url value="/delete/${user.id}" />" class="btn btn-default" style="padding: 0px 13px">
+                                    Delete
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

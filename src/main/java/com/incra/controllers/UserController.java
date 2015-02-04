@@ -1,5 +1,6 @@
 package com.incra.controllers;
 
+import com.incra.models.Site;
 import com.incra.models.User;
 import com.incra.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,7 +36,6 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        System.out.println("Listing all users");
         List<User> users = userService.findEntityList();
 
         model.addAttribute("user", new User());
@@ -55,6 +56,17 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView edit(@PathVariable int id) {
+
+        User user = userService.findEntityById(id);
+
+        ModelAndView modelAndView = new ModelAndView("user/edit");
+        modelAndView.addObject("command", user);
+
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveUser(@ModelAttribute("user") User user, BindingResult result) {
 
@@ -63,7 +75,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping("/delete/{userId}")
+    @RequestMapping(value = "/delete/{userId}")
     public String deleteUser(@PathVariable("userId") int userId) {
 
         userService.delete(userService.findEntityById(userId));
