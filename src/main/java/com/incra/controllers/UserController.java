@@ -46,7 +46,7 @@ public class UserController {
     public String showUser(@PathVariable("userId") int userId, Model model) {
 
         User user = userService.findEntityById(userId);
-        System.out.println(user);
+
         if (user != null) {
             model.addAttribute(user);
             return "user/show";
