@@ -1,6 +1,8 @@
 package com.incra.models;
 
 import com.incra.database.AbstractDatedDatabaseItem;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,
+        region = "users")
 public class User extends AbstractDatedDatabaseItem {
 
     @Basic

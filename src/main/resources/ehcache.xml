@@ -24,4 +24,12 @@
             timeToLiveSeconds="3600"
             overflowToDisk="false">
     </defaultCache>
+
+    <cache name="users"
+           maxElementsInMemory="5000"
+           eternal="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="3600"
+           overflowToDisk="false">
+    </cache>
 </ehcache>
