@@ -34,6 +34,7 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
+        System.out.println("Listing all users");
         List<User> users = userService.findEntityList();
 
         model.addAttribute("user", new User());
