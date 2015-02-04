@@ -55,8 +55,8 @@
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: com.googlecode.ehcache-spring-annotations:ehcache-spring-annotations:1.2.0" />
-          <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.4.7" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:r09" />
+          <element id="library" level="project" name="Maven: net.sf.ehcache:ehcache-core:2.6.10" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="SP05/web/Web" />

@@ -11,8 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "user")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE,
-        region = "users")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "users")
 public class User extends AbstractDatedDatabaseItem {
 
     @Basic
