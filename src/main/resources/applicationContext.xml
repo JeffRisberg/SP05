@@ -7,7 +7,6 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
-
         http://www.springframework.org/schema/tx 
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
@@ -29,35 +28,36 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="persistenceProvider">
-            <bean class="org.hibernate.ejb.HibernatePersistence"/>
+        <property name="packagesToScan" value="com.incra.models" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</prop>
+                <prop key="hibernate.use_query_cache">true</prop>
+            </props>
         </property>
     </bean>
 
+    <!-- This bean is used by the DBSetup code, which needs a Hibernate Sesssion rather than JPA EMF,
+         because only the Hibernate Session object has methods to drop and create the schema -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource">
             <ref bean="dataSource"/>
         </property>
-        <property name="annotatedClasses">
-            <list>
-
-                <value>com.incra.models.Box</value>
-                <value>com.incra.models.Rubric</value>
-                <value>com.incra.models.RubricBox</value>
-                <value>com.incra.models.Site</value>
-                <value>com.incra.models.User</value>
-
-            </list>
-        </property>
+        <property name="packagesToScan" value="com.incra.models" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</prop>
-                <prop key="hibernate.cache.use_second_level_cache">true</prop>
             </props>
         </property>
     </bean>
