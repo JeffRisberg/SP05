@@ -29,6 +29,17 @@
         <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>lightadmin-nexus-releases</id>
+            <url>http://lightadmin.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -241,6 +252,11 @@
             <version>2.1</version>
             <type>jar</type>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.lightadmin</groupId>
+            <artifactId>lightadmin</artifactId>
+            <version>1.0.0.M2</version>
         </dependency>
     </dependencies>
 
