@@ -23,7 +23,7 @@
 
     <properties>
         <spring.version>3.2.13.RELEASE</spring.version>
-        <spring.security.version>3.0.5.RELEASE</spring.security.version>
+        <spring.security.version>3.2.5.RELEASE</spring.security.version>
         <org.slf4j.version>1.7.6</org.slf4j.version>
         <org.apache.log4j.version>1.2.17</org.apache.log4j.version>
         <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
@@ -115,6 +115,12 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring.security.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>${spring.security.version}</version>
             <type>jar</type>
@@ -139,6 +145,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>${org.apache.tiles.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>${org.apache.tiles.version}</version>
             <type>jar</type>
@@ -152,6 +164,12 @@
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-template</artifactId>
+            <version>${org.apache.tiles.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-el</artifactId>
             <version>${org.apache.tiles.version}</version>
             <type>jar</type>
         </dependency>
