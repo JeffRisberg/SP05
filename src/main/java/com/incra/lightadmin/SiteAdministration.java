@@ -1,5 +1,6 @@
 package com.incra.lightadmin;
 
+import com.incra.models.Site;
 import com.incra.models.User;
 import org.lightadmin.api.config.AdministrationConfiguration;
 import org.lightadmin.api.config.builder.EntityMetadataConfigurationUnitBuilder;
@@ -12,21 +13,20 @@ import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
 /**
  * Created by Jeffrey Risberg on 2/4/2015.
  */
-public class UserAdministration extends AdministrationConfiguration<User> {
+public class SiteAdministration extends AdministrationConfiguration<Site> {
 
     public EntityMetadataConfigurationUnit configuration(EntityMetadataConfigurationUnitBuilder configurationBuilder) {
-        return configurationBuilder.nameField("firstName").build();
+        return configurationBuilder.nameField("name").build();
     }
 
     public ScreenContextConfigurationUnit screenContext(ScreenContextConfigurationUnitBuilder screenContextBuilder) {
         return screenContextBuilder
-                .screenName("User Administration").build();
+                .screenName("Site Administration").build();
     }
 
     public FieldSetConfigurationUnit listView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
-                .field("firstName").caption("First Name")
-                .field("lastName").caption("Last Name")
+                .field("name").caption("Name")
                 .build();
     }
 }
