@@ -1,3 +1,3 @@
-SP04 is a test case for using Spring 3.2 in IntelliJ, with JPA
+SP05 is a test case for using Spring 3.2 in IntelliJ, with JPA
 
 
