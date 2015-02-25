@@ -5,6 +5,6 @@
     SP05
 </div>
 <div style="float:right; font-weight: bold">
-    Example Spring 3.2.13, JPA 2.1, Twitter Bootstrap 3.3.2, jQuery 1.11.1 Application
+    Example Spring 3.2.13, JPA 2.1, LightAdmin, Twitter Bootstrap 3.3.2, jQuery 1.11.1 Application
 </div>
 <div style="clear:both"></div>
