@@ -2,6 +2,8 @@ package com.incra.database;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.util.Date;
 
 /**
@@ -32,5 +34,15 @@ public abstract class AbstractDatedDatabaseItem extends AbstractDatabaseItem {
 
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        dateCreated = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        lastUpdated = new Date();
     }
 }
