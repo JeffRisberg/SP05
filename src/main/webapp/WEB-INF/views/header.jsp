@@ -6,5 +6,9 @@
 </a>
 
 <div class="pull-right">
+    <a href="<c:url value="/admin" />" class="btn btn-default">LightAdmin Home</a>
+</div>
+
+<div class="pull-right">
     <a href="<c:url value="/adminHome" />" class="btn btn-default">Admin Home</a>
 </div>

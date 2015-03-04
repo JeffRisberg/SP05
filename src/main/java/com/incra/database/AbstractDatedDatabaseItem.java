@@ -1,9 +1,6 @@
 package com.incra.database;
 
-import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,9 +12,11 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractDatedDatabaseItem extends AbstractDatabaseItem {
     @Column(name = "date_created")
+    @Temporal(TemporalType.DATE)
     private Date dateCreated;
 
     @Column(name = "last_updated")
+    @Temporal(TemporalType.DATE)
     private Date lastUpdated;
 
     public Date getDateCreated() {
