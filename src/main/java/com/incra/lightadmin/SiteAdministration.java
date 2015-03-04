@@ -27,6 +27,7 @@ public class SiteAdministration extends AdministrationConfiguration<Site> {
     public FieldSetConfigurationUnit listView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
                 .field("name").caption("Name")
+                .field("customCSS").caption("Custom CSS")
                 .build();
     }
 }
