@@ -30,4 +30,23 @@ public class SiteAdministration extends AdministrationConfiguration<Site> {
                 .field("customCSS").caption("Custom CSS")
                 .build();
     }
+
+    public FieldSetConfigurationUnit quickView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
+        return fragmentBuilder
+                .field("name").caption("Name")
+                .field("customCSS").caption("Custom CSS")
+                .field("dateCreated").caption("Date Created")
+                .field("lastUpdated").caption("Last Updated")
+                .build();
+    }
+
+    public FieldSetConfigurationUnit showView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
+        return fragmentBuilder
+                .field("id").caption("Id")
+                .field("name").caption("Name")
+                .field("customCSS").caption("Custom CSS")
+                .field("dateCreated").caption("Date Created")
+                .field("lastUpdated").caption("Last Updated")
+                .build();
+    }
 }

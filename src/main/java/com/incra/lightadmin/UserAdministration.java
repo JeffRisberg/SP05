@@ -29,4 +29,25 @@ public class UserAdministration extends AdministrationConfiguration<User> {
                 .field("lastName").caption("Last Name")
                 .build();
     }
+
+    public FieldSetConfigurationUnit quickView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
+        return fragmentBuilder
+                .field("firstName").caption("First Name")
+                .field("lastName").caption("Last Name")
+                .field("dateCreated").caption("Date Created")
+                .field("lastUpdated").caption("Last Updated")
+                .build();
+    }
+
+    public FieldSetConfigurationUnit showView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
+        return fragmentBuilder
+                .field("id").caption("Id")
+                .field("firstName").caption("First Name")
+                .field("lastName").caption("Last Name")
+                .field("email").caption("Email")
+                .field("password").caption("Password")
+                .field("dateCreated").caption("Date Created")
+                .field("lastUpdated").caption("Last Updated")
+                .build();
+    }
 }
