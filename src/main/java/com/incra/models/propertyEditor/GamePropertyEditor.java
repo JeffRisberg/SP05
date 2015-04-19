@@ -1,14 +1,14 @@
 package com.incra.models.propertyEditor;
 
-import com.incra.models.Site;
-import com.incra.services.SiteService;
+import com.incra.models.Game;
+import com.incra.services.GameService;
 
 import java.beans.PropertyEditorSupport;
 
-public class SitePropertyEditor extends PropertyEditorSupport {
-    private final SiteService siteService;
+public class GamePropertyEditor extends PropertyEditorSupport {
+    private final GameService siteService;
 
-    public SitePropertyEditor(SiteService siteService) {
+    public GamePropertyEditor(GameService siteService) {
         this.siteService = siteService;
     }
 
@@ -21,8 +21,8 @@ public class SitePropertyEditor extends PropertyEditorSupport {
     public String getAsText() {
         Object value = getValue();
 
-        if (value instanceof Site) {
-            return String.valueOf(((Site) value).getId());
+        if (value instanceof Game) {
+            return String.valueOf(((Game) value).getId());
         } else {
             return super.getAsText();
         }

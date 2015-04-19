@@ -3,18 +3,19 @@ package com.incra.models;
 import com.incra.database.AbstractDatedDatabaseItem;
 
 import javax.persistence.*;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Region on a page
+ * Episode in a game
  *
  * @author Jeff Risberg
  * @since February 2014
  */
 @Entity
-@Table(name = "box")
-public class Box extends AbstractDatedDatabaseItem {
+@Table(name = "episode")
+public class Episode extends AbstractDatedDatabaseItem {
 
     // type must go here somewhere
 
@@ -22,29 +23,24 @@ public class Box extends AbstractDatedDatabaseItem {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "site_id", nullable = false)
-    private Site site;
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
 
     @Basic
-    @Column(name = "row_index")
-    private Integer rowIndex;
+    @Column(name = "seq_num")
+    private Integer seqNum;
 
     @Basic
-    @Column(name = "col_index")
-    private Integer colIndex;
-
-    @Basic
-    private Integer width;
+    private Integer minScorePoints;
 
     @Basic
     @Column(name = "image_file_name", nullable = true)
     private String imageFileName;
 
-    @Transient
-    private List<Rubric> rubrics = new ArrayList<Rubric>();
-
-    // Constructor
-    public Box() {
+    /**
+     * Default Constructor
+     */
+    public Episode() {
     }
 
     public String getTitle() {
@@ -55,36 +51,28 @@ public class Box extends AbstractDatedDatabaseItem {
         this.title = title;
     }
 
-    public Site getSite() {
-        return site;
+    public Game getGame() {
+        return game;
     }
 
-    public void setSite(Site site) {
-        this.site = site;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    public Integer getRowIndex() {
-        return rowIndex;
+    public Integer getSeqNum() {
+        return seqNum;
     }
 
-    public void setRowIndex(Integer rowIndex) {
-        this.rowIndex = rowIndex;
+    public void setSeqNum(Integer seqNum) {
+        this.seqNum = seqNum;
     }
 
-    public Integer getColIndex() {
-        return colIndex;
+    public Integer getMinScorePoints() {
+        return minScorePoints;
     }
 
-    public void setColIndex(Integer colIndex) {
-        this.colIndex = colIndex;
-    }
-
-    public Integer getWidth() {
-        return width;
-    }
-
-    public void setWidth(Integer width) {
-        this.width = width;
+    public void setMinScorePoints(Integer minScorePoints) {
+        this.minScorePoints = minScorePoints;
     }
 
     public String getImageFileName() {
@@ -95,16 +83,12 @@ public class Box extends AbstractDatedDatabaseItem {
         this.imageFileName = imageFileName;
     }
 
-    public List<Rubric> getRubrics() {
-        return rubrics;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Box)) return false;
+        if (!(o instanceof Episode)) return false;
 
-        Box rubric = (Box) o;
+        Episode rubric = (Episode) o;
 
         if (!title.equals(rubric.title)) return false;
 
@@ -120,7 +104,7 @@ public class Box extends AbstractDatedDatabaseItem {
     public String toString() {
         StringBuffer sb = new StringBuffer();
 
-        sb.append("Box[title=");
+        sb.append("Episode[title=");
         sb.append(title);
         sb.append("]");
 

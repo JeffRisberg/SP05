@@ -1,7 +1,6 @@
 package com.incra.lightadmin;
 
-import com.incra.models.Site;
-import com.incra.models.User;
+import com.incra.models.Game;
 import org.lightadmin.api.config.AdministrationConfiguration;
 import org.lightadmin.api.config.builder.EntityMetadataConfigurationUnitBuilder;
 import org.lightadmin.api.config.builder.FieldSetConfigurationUnitBuilder;
@@ -13,7 +12,7 @@ import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
 /**
  * Created by Jeffrey Risberg on 2/4/2015.
  */
-public class SiteAdministration extends AdministrationConfiguration<Site> {
+public class SiteAdministration extends AdministrationConfiguration<Game> {
 
     public EntityMetadataConfigurationUnit configuration(EntityMetadataConfigurationUnitBuilder configurationBuilder) {
         return configurationBuilder.nameField("name").build();

@@ -1,6 +1,6 @@
 package com.incra.services;
 
-import com.incra.models.Site;
+import com.incra.models.Game;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,34 +14,34 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * The <i>SiteService</i> handles the JPA-based updating of Site entities.
+ * The <i>GameService</i> handles the JPA-based updating of Game entities.
  *
  * @author Jeffrey Risberg
  * @since February 2014
  */
 @Transactional
 @Repository
-public class SiteService {
+public class GameService {
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<Site> findEntityList() {
+    public List<Game> findEntityList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Site> criteria = cb.createQuery(Site.class);
-        criteria.from(Site.class);
+        CriteriaQuery<Game> criteria = cb.createQuery(Game.class);
+        criteria.from(Game.class);
 
         return em.createQuery(criteria).getResultList();
     }
 
-    public Site findEntityById(int id) {
-        return em.find(Site.class, id);
+    public Game findEntityById(int id) {
+        return em.find(Game.class, id);
     }
 
-    public Site findEntityByName(String name) {
+    public Game findEntityByName(String name) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Site> criteria = builder.createQuery(Site.class);
-        Root<Site> root = criteria.from(Site.class);
+        CriteriaQuery<Game> criteria = builder.createQuery(Game.class);
+        Root<Game> root = criteria.from(Game.class);
 
         Path<String> rootName = root.get("name");
         criteria.where(builder.equal(rootName, name));
@@ -53,7 +53,7 @@ public class SiteService {
         }
     }
 
-    public void save(Site site) {
+    public void save(Game site) {
         if (site.getId() == null || site.getId() == 0) {
             em.persist(site);
         } else {
@@ -61,12 +61,12 @@ public class SiteService {
         }
     }
 
-    public void delete(Site site) {
+    public void delete(Game site) {
         this.delete(site.getId());
     }
 
     public void delete(int siteId) {
-        Site existingSite = this.findEntityById(siteId);
+        Game existingSite = this.findEntityById(siteId);
         if (null != existingSite) {
             em.remove(existingSite);
         }

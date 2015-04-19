@@ -7,19 +7,23 @@
 
 <table class="table">
     <tr>
+        <td>Site:</td>
+        <td>${episode.game.name}</td>
+    </tr>
+    <tr>
         <td>Title:</td>
-        <td>${rubric.title}</td>
+        <td>${episode.title}</td>
     </tr>
     <tr>
         <td>SeqNum:</td>
-        <td>${rubric.seqNum}</td>
+        <td>${episode.seqNum}</td>
     </tr>
     <tr>
-        <td>Body:</td>
-        <td>${rubric.body}</td>
+        <td>MinScorePoints:</td>
+        <td>${episode.minScorePoints}</td>
     </tr>
 </table>
 
 <div class="botButtons">
-    <a href="<c:url value="/rubric/edit/${rubric.id}" />" class="btn btn-default">Edit</a>
+    <a href="<c:url value="/episode/edit/${episode.id}" />" class="btn btn-default">Edit</a>
 </div>

@@ -1,8 +1,8 @@
 package com.incra.controllers;
 
-import com.incra.models.Site;
+import com.incra.models.Game;
 import com.incra.services.PageFrameworkService;
-import com.incra.services.SiteService;
+import com.incra.services.GameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +27,15 @@ import java.util.List;
  * @since 03/12/14
  */
 @Controller
-public class SiteController extends AbstractAdminController {
-    protected static Logger logger = LoggerFactory.getLogger(SiteController.class);
+public class GameController extends AbstractAdminController {
+    protected static Logger logger = LoggerFactory.getLogger(GameController.class);
 
     @Autowired
-    private SiteService siteService;
+    private GameService gameService;
     @Autowired
     private PageFrameworkService pageFrameworkService;
 
-    public SiteController() {
+    public GameController() {
     }
 
     @InitBinder
@@ -44,94 +44,94 @@ public class SiteController extends AbstractAdminController {
                 (Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), false));
     }
 
-    @RequestMapping(value = "/site/**")
+    @RequestMapping(value = "/game/**")
     public String index() {
-        return "redirect:/site/list";
+        return "redirect:/game/list";
     }
 
-    @RequestMapping(value = "/site/list")
+    @RequestMapping(value = "/game/list")
     public ModelAndView list(Object criteria) {
 
-        List<Site> siteList = siteService.findEntityList();
+        List<Game> gameList = gameService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("site/list");
-        modelAndView.addObject("siteList", siteList);
+        ModelAndView modelAndView = new ModelAndView("game/list");
+        modelAndView.addObject("gameList", gameList);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/site/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable int id, Model model, HttpSession session) {
 
-        Site site = siteService.findEntityById(id);
-        if (site != null) {
-            model.addAttribute(site);
-            return "site/show";
+        Game game = gameService.findEntityById(id);
+        if (game != null) {
+            model.addAttribute(game);
+            return "game/show";
         } else {
             pageFrameworkService.setFlashMessage(session, "No Site with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/site/list";
+            return "redirect:/game/list";
         }
     }
 
-    @RequestMapping(value = "/site/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
-        Site site = new Site();
+        Game game = new Game();
 
-        ModelAndView modelAndView = new ModelAndView("site/create");
-        modelAndView.addObject("command", site);
+        ModelAndView modelAndView = new ModelAndView("game/create");
+        modelAndView.addObject("command", game);
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/site/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable int id) {
-        Site site = siteService.findEntityById(id);
+        Game game = gameService.findEntityById(id);
 
-        ModelAndView modelAndView = new ModelAndView("site/edit");
-        modelAndView.addObject("command", site);
+        ModelAndView modelAndView = new ModelAndView("game/edit");
+        modelAndView.addObject("command", game);
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/site/save", method = RequestMethod.POST)
-    public String save(final @ModelAttribute("command") @Valid Site site,
+    @RequestMapping(value = "/game/save", method = RequestMethod.POST)
+    public String save(final @ModelAttribute("command") @Valid Game game,
                        BindingResult result, Model model, HttpSession session) {
 
         if (result.hasErrors()) {
-            return "site/edit";
+            return "game/edit";
         }
 
         try {
-            if (site.getDateCreated() == null) site.setDateCreated(getNow());
-            site.setLastUpdated(getNow());
+            if (game.getDateCreated() == null) game.setDateCreated(getNow());
+            game.setLastUpdated(getNow());
 
-            siteService.save(site);
+            gameService.save(game);
         } catch (RuntimeException re) {
             pageFrameworkService.setFlashMessage(session, re.getMessage());
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/site/list";
+            return "redirect:/game/list";
         }
-        return "redirect:/site/list";
+        return "redirect:/game/list";
     }
 
-    @RequestMapping(value = "/site/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/game/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id, HttpSession session) {
 
-        Site site = siteService.findEntityById(id);
-        if (site != null) {
+        Game game = gameService.findEntityById(id);
+        if (game != null) {
             try {
-                siteService.delete(site);
+                gameService.delete(game);
             } catch (RuntimeException re) {
                 pageFrameworkService.setFlashMessage(session, re.getMessage());
                 pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-                return "redirect:/site/show/" + id;
+                return "redirect:/game/show/" + id;
             }
         } else {
             pageFrameworkService.setFlashMessage(session, "No Site with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
         }
 
-        return "redirect:/site/list";
+        return "redirect:/game/list";
     }
 }

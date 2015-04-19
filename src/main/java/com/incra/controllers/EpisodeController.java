@@ -1,11 +1,11 @@
 package com.incra.controllers;
 
-import com.incra.models.Box;
-import com.incra.models.Site;
-import com.incra.models.propertyEditor.SitePropertyEditor;
-import com.incra.services.BoxService;
+import com.incra.models.Episode;
+import com.incra.models.Game;
+import com.incra.models.propertyEditor.GamePropertyEditor;
+import com.incra.services.EpisodeService;
 import com.incra.services.PageFrameworkService;
-import com.incra.services.SiteService;
+import com.incra.services.GameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,119 +30,119 @@ import java.util.List;
  * @since 03/12/14
  */
 @Controller
-public class BoxController extends AbstractAdminController {
-    protected static Logger logger = LoggerFactory.getLogger(BoxController.class);
+public class EpisodeController extends AbstractAdminController {
+    protected static Logger logger = LoggerFactory.getLogger(EpisodeController.class);
 
     @Autowired
-    private BoxService boxService;
+    private EpisodeService episodeService;
     @Autowired
-    private SiteService siteService;
+    private GameService siteService;
     @Autowired
     private PageFrameworkService pageFrameworkService;
 
-    public BoxController() {
+    public EpisodeController() {
     }
 
     @InitBinder
     protected void initBinder(WebDataBinder dataBinder) throws Exception {
         dataBinder.registerCustomEditor
                 (Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), false));
-        dataBinder.registerCustomEditor(Site.class,
-                new SitePropertyEditor(siteService));
+        dataBinder.registerCustomEditor(Game.class,
+                new GamePropertyEditor(siteService));
     }
 
-    @RequestMapping(value = "/box/**")
+    @RequestMapping(value = "/episode/**")
     public String index() {
-        return "redirect:/box/list";
+        return "redirect:/episode/list";
     }
 
-    @RequestMapping(value = "/box/list")
+    @RequestMapping(value = "/episode/list")
     public ModelAndView list(Object criteria) {
 
-        List<Box> boxList = boxService.findEntityList();
+        List<Episode> episodeList = episodeService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("box/list");
-        modelAndView.addObject("boxList", boxList);
+        ModelAndView modelAndView = new ModelAndView("episode/list");
+        modelAndView.addObject("episodeList", episodeList);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/box/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/episode/show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable int id, Model model, HttpSession session) {
 
-        Box box = boxService.findEntityById(id);
-        if (box != null) {
-            model.addAttribute(box);
-            return "box/show";
+        Episode episode = episodeService.findEntityById(id);
+        if (episode != null) {
+            model.addAttribute(episode);
+            return "episode/show";
         } else {
             pageFrameworkService.setFlashMessage(session, "No Box with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/box/list";
+            return "redirect:/episode/list";
         }
     }
 
-    @RequestMapping(value = "/box/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/episode/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
-        Box box = new Box();
-        List<Site> siteList = siteService.findEntityList();
+        Episode episode = new Episode();
+        List<Game> siteList = siteService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("box/create");
+        ModelAndView modelAndView = new ModelAndView("episode/create");
         modelAndView.addObject("siteList", siteList);
-        modelAndView.addObject("command", box);
+        modelAndView.addObject("command", episode);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/box/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/episode/edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable int id) {
         
-        Box box = boxService.findEntityById(id);
-        List<Site> siteList = siteService.findEntityList();
+        Episode episode = episodeService.findEntityById(id);
+        List<Game> siteList = siteService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("box/edit");
+        ModelAndView modelAndView = new ModelAndView("episode/edit");
         modelAndView.addObject("siteList", siteList);
-        modelAndView.addObject("command", box);
+        modelAndView.addObject("command", episode);
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/box/save", method = RequestMethod.POST)
-    public String save(final @ModelAttribute("command") @Valid Box box,
+    @RequestMapping(value = "/episode/save", method = RequestMethod.POST)
+    public String save(final @ModelAttribute("command") @Valid Episode episode,
                        BindingResult result, Model model, HttpSession session) {
 
         if (result.hasErrors()) {
-            return "box/edit";
+            return "episode/edit";
         }
 
         try {
-            if (box.getDateCreated() == null) box.setDateCreated(new Date());
-            box.setLastUpdated(new Date());
+            if (episode.getDateCreated() == null) episode.setDateCreated(new Date());
+            episode.setLastUpdated(new Date());
 
-            boxService.save(box);
+            episodeService.save(episode);
         } catch (RuntimeException re) {
             pageFrameworkService.setFlashMessage(session, re.getMessage());
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/box/list";
+            return "redirect:/episode/list";
         }
-        return "redirect:/box/list";
+        return "redirect:/episode/list";
     }
 
-    @RequestMapping(value = "/box/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/episode/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id, HttpSession session) {
 
-        Box box = boxService.findEntityById(id);
-        if (box != null) {
+        Episode episode = episodeService.findEntityById(id);
+        if (episode != null) {
             try {
-                boxService.delete(box);
+                episodeService.delete(episode);
             } catch (RuntimeException re) {
                 pageFrameworkService.setFlashMessage(session, re.getMessage());
                 pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-                return "redirect:/box/show/" + id;
+                return "redirect:/episode/show/" + id;
             }
         } else {
             pageFrameworkService.setFlashMessage(session, "No Box with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
         }
 
-        return "redirect:/box/list";
+        return "redirect:/episode/list";
     }
 }

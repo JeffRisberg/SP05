@@ -8,48 +8,50 @@
 
 <div class="row" style="padding-top: 8px">
     <div class="col-md-6" style="font-size: 16px; font-weight: bold">
-        Find, edit, and create your sites
+        Find, edit, and create your Episodes
     </div>
     <div class="col-md-6">
-        <a href="<c:url value="/site/create" />" class="pull-right btn btn-default" style="padding: 0px 10px">
-            Create New Site &raquo
+        <a href="<c:url value="/episode/create" />" class="pull-right btn btn-default" style="padding: 0px 10px">
+            Create New Episodes &raquo
         </a>
     </div>
 </div>
-<div id="siteResults">
+<div id="episodeResults">
     <div class="list">
         <table class="table">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Custom CSS</th>
+                <th>Game</th>
+                <th>Title</th>
+                <th>Seq #</th>
+                <th>MinScorePoints</th>
                 <th>Date Created</th>
                 <th>Last Updated</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="site" items="${siteList}" varStatus="rowCounter">
+            <c:forEach var="episode" items="${episodeList}" varStatus="rowCounter">
                 <tr class="${rowCounter.count % 2 == 0 ? 'even' : 'odd'}">
+                    <td>${episode.game.name}</td>
                     <td>
-                        <a href="<c:url value="/site/show/${site.id}" />">${site.name}</a>
+                        <a href="<c:url value="/episode/show/${episode.id}" />">${episode.title}</a>
                     </td>
-                    <td>${site.customCSS}</td>
-                    <td>${site.dateCreated}</td>
-                    <td>${site.lastUpdated}</td>
+                    <td>${episode.seqNum}</td>
+                    <td>${episode.minScorePoints}</td>
+                    <td>${episode.dateCreated}</td>
+                    <td>${episode.lastUpdated}</td>
                     <td>
                         <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/page/${site.id}" />">View</a>
+                           href="<c:url value="/episode/edit/${episode.id}" />">Edit</a>
                         <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/site/edit/${site.id}" />">Edit</a>
-                        <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/site/delete/${site.id}" />">Delete</a>
+                           href="<c:url value="/episode/delete/${episode.id}" />">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
-            <c:if test="${empty siteList}">
+            <c:if test="${empty episodeList}">
                 <tr>
-                    <td colspan="999">No sites found</td>
+                    <td colspan="999">No episodes found</td>
                 </tr>
             </c:if>
             </tbody>

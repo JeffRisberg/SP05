@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Stores site info
+ * Stores game info
  */
 @Entity
-@Table(name = "site")
-public class Site extends AbstractDatedDatabaseItem {
+@Table(name = "game")
+public class Game extends AbstractDatedDatabaseItem {
 
     @Basic
     private String name;
@@ -18,8 +18,8 @@ public class Site extends AbstractDatedDatabaseItem {
     @Column(name = "custom_css")
     private String customCSS;
 
-    @OneToMany(mappedBy = "site")
-    private List<Box> boxes;
+    @OneToMany(mappedBy = "game")
+    private List<Episode> episodes;
 
     public String getName() {
         return name;
@@ -37,20 +37,20 @@ public class Site extends AbstractDatedDatabaseItem {
         this.customCSS = customCSS;
     }
 
-    public List<Box> getBoxes() {
-        return boxes;
+    public List<Episode> getEpisodes() {
+        return episodes;
     }
 
-    public void setBoxes(List<Box> boxes) {
-        this.boxes = boxes;
+    public void setEpisodes(List<Episode> episodes) {
+        this.episodes = episodes;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Site)) return false;
+        if (!(o instanceof Game)) return false;
 
-        Site site = (Site) o;
+        Game site = (Game) o;
 
         if (!name.equals(site.name)) return false;
 

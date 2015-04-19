@@ -1,7 +1,7 @@
 package com.incra.services;
 
-import com.incra.models.Box;
-import com.incra.models.Site;
+import com.incra.models.Episode;
+import com.incra.models.Game;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,34 +15,34 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * The <i>BoxService</i> handles the JPA-based updating of Box entities.
+ * The <i>EpisodeService</i> handles the JPA-based updating of Episode entities.
  *
  * @author Jeffrey Risberg
  * @since February 2014
  */
 @Transactional
 @Repository
-public class BoxService {
+public class EpisodeService {
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<Box> findEntityList() {
+    public List<Episode> findEntityList() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Box> criteria = cb.createQuery(Box.class);
-        criteria.from(Box.class);
+        CriteriaQuery<Episode> criteria = cb.createQuery(Episode.class);
+        criteria.from(Episode.class);
 
         return em.createQuery(criteria).getResultList();
     }
 
-    public Box findEntityById(int id) {
-        return em.find(Box.class, id);
+    public Episode findEntityById(int id) {
+        return em.find(Episode.class, id);
     }
 
-    public Box findEntityByTitle(String title) {
+    public Episode findEntityByTitle(String title) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Box> criteria = builder.createQuery(Box.class);
-        Root<Box> root = criteria.from(Box.class);
+        CriteriaQuery<Episode> criteria = builder.createQuery(Episode.class);
+        Root<Episode> root = criteria.from(Episode.class);
 
         Path<String> rootTitle = root.get("title");
         criteria.where(builder.equal(rootTitle, title));
@@ -54,7 +54,7 @@ public class BoxService {
         }
     }
 
-    public void save(Box box) {
+    public void save(Episode box) {
         if (box.getId() == null || box.getId() == 0) {
             em.persist(box);
         } else {
@@ -62,23 +62,23 @@ public class BoxService {
         }
     }
 
-    public void delete(Box box) {
+    public void delete(Episode box) {
         this.delete(box.getId());
     }
 
     public void delete(int boxId) {
-        Box existingBox = this.findEntityById(boxId);
+        Episode existingBox = this.findEntityById(boxId);
         if (null != existingBox) {
             em.remove(existingBox);
         }
     }
 
-    public List<Box> findEntityListBySite(Site site) {
+    public List<Episode> findEntityListBySite(Game site) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<Box> criteria = builder.createQuery(Box.class);
-        Root<Box> root = criteria.from(Box.class);
+        CriteriaQuery<Episode> criteria = builder.createQuery(Episode.class);
+        Root<Episode> root = criteria.from(Episode.class);
 
-        Path<Site> rootSite = root.get("site");
+        Path<Game> rootSite = root.get("site");
         criteria.where(builder.equal(rootSite, site));
 
         return em.createQuery(criteria).getResultList();
