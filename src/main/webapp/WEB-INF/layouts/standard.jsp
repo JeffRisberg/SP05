@@ -32,13 +32,13 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="/game">Games</a>
+                    <a href="<c:url value="/game" />">Games</a>
                 </li>
                 <li>
-                    <a href="/episode">Episodes</a>
+                    <a href="<c:url value="/episode" />">Episodes</a>
                 </li>
                 <li>
-                    <a href="/objective">Objectives</a>
+                    <a href="<c:url value="/objective" />">Objectives</a>
                 </li>
             </ul>
         </div>
