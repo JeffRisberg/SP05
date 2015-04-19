@@ -28,10 +28,28 @@ INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file
 values (14, 11, 4, 60, 'CObjective10', null, now(), now());
 
 INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
-values (15, 12, 1, 10, 'CObjective00', null, now(), now());
+values (15, 12, 1, 10, 'AlphaObjective00', null, now(), now());
 INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
-values (16, 12, 2, 20, 'CObjective01', null, now(), now());
+values (16, 12, 2, 20, 'AlphaObjective01', null, now(), now());
 INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
-values (17, 12, 3, 40, 'CObjective02', null, now(), now());
+values (17, 12, 3, 40, 'AlphaObjective02', null, now(), now());
 INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
-values (18, 12, 4, 60, 'CObjective10', null, now(), now());
+values (18, 12, 4, 60, 'AlphaObjective10', null, now(), now());
+
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (21, 21, 1, 10, 'ZetaObjective00', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (22, 21, 2, 20, 'ZetaObjective01', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (23, 21, 3, 40, 'ZetaObjective02', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (24, 21, 4, 60, 'ZetaObjective03', null, now(), now());
+
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (25, 22, 1, 10, 'GammaObjective00', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (26, 22, 2, 20, 'GammaObjective01', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (27, 22, 3, 40, 'GammaObjective02', null, now(), now());
+INSERT INTO objective (id, episode_id, seq_num, minScorePoints, name, image_file_name, date_created, last_updated)
+values (28, 22, 4, 60, 'GammaObjective03', null, now(), now());
