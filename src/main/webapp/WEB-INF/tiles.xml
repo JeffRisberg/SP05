@@ -50,7 +50,7 @@
     </definition>
 
     <definition name="episode/*" extends="standardLayout">
-        <put-attribute name="title" value="Boxes"/>
+        <put-attribute name="title" value="Episodes"/>
         <put-attribute name="body" value="/WEB-INF/views/episode/{1}.jsp"/>
     </definition>
 
