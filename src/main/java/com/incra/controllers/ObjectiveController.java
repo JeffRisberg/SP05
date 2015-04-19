@@ -2,10 +2,13 @@ package com.incra.controllers;
 
 import com.incra.models.Episode;
 import com.incra.models.Game;
+import com.incra.models.Objective;
+import com.incra.models.propertyEditor.EpisodePropertyEditor;
 import com.incra.models.propertyEditor.GamePropertyEditor;
 import com.incra.services.EpisodeService;
-import com.incra.services.PageFrameworkService;
 import com.incra.services.GameService;
+import com.incra.services.ObjectiveService;
+import com.incra.services.PageFrameworkService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,23 +27,26 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The <i>EpisodeController</i> controller implements CRUD operations on Episodes.
+ * The <i>ObjectiveController</i> controller implements CRUD operations on Objectives.
  *
  * @author Jeffrey Risberg
  * @since 03/12/14
  */
 @Controller
-public class EpisodeController extends AbstractAdminController {
-    protected static Logger logger = LoggerFactory.getLogger(EpisodeController.class);
+public class ObjectiveController extends AbstractAdminController {
+    protected static Logger logger = LoggerFactory.getLogger(ObjectiveController.class);
 
     @Autowired
     private GameService gameService;
     @Autowired
     private EpisodeService episodeService;
     @Autowired
+    private ObjectiveService objectiveService;
+
+    @Autowired
     private PageFrameworkService pageFrameworkService;
 
-    public EpisodeController() {
+    public ObjectiveController() {
     }
 
     @InitBinder
@@ -49,68 +55,74 @@ public class EpisodeController extends AbstractAdminController {
                 (Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), false));
         dataBinder.registerCustomEditor(Game.class,
                 new GamePropertyEditor(gameService));
+        dataBinder.registerCustomEditor(Episode.class,
+                new EpisodePropertyEditor(episodeService));
     }
 
-    @RequestMapping(value = "/episode/**")
+    @RequestMapping(value = "/objective/**")
     public String index() {
-        return "redirect:/episode/list";
+        return "redirect:/objective/list";
     }
 
-    @RequestMapping(value = "/episode/list")
+    @RequestMapping(value = "/objective/list")
     public ModelAndView list(Object criteria) {
 
-        List<Episode> episodeList = episodeService.findEntityList();
+        List<Objective> objectiveList = objectiveService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("episode/list");
-        modelAndView.addObject("episodeList", episodeList);
+        ModelAndView modelAndView = new ModelAndView("objective/list");
+        modelAndView.addObject("objectiveList", objectiveList);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/episode/show/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/objective/show/{id}", method = RequestMethod.GET)
     public String show(@PathVariable int id, Model model, HttpSession session) {
 
-        Episode episode = episodeService.findEntityById(id);
-        if (episode != null) {
-            model.addAttribute(episode);
-            return "episode/show";
+        Objective objective = objectiveService.findEntityById(id);
+        if (objective != null) {
+            model.addAttribute(objective);
+            return "objective/show";
         } else {
-            pageFrameworkService.setFlashMessage(session, "No Box with that id");
+            pageFrameworkService.setFlashMessage(session, "No Objective with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/episode/list";
+            return "redirect:/objective/list";
         }
     }
 
-    @RequestMapping(value = "/episode/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/objective/create", method = RequestMethod.GET)
     public ModelAndView create() {
 
-        Episode episode = new Episode();
+        Objective objective = new Objective();
         List<Game> gameList = gameService.findEntityList();
+        List<Episode> episodeList = episodeService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("episode/create");
+        ModelAndView modelAndView = new ModelAndView("objective/create");
         modelAndView.addObject("gameList", gameList);
-        modelAndView.addObject("command", episode);
+        modelAndView.addObject("episodeList", episodeList);
+        modelAndView.addObject("command", objective);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/episode/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/objective/edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable int id) {
-        
-        Episode episode = episodeService.findEntityById(id);
-        List<Game> gameList = gameService.findEntityList();
 
-        ModelAndView modelAndView = new ModelAndView("episode/edit");
+        Objective objective = objectiveService.findEntityById(id);
+        List<Game> gameList = gameService.findEntityList();
+        List<Episode> episodeList = episodeService.findEntityList();
+
+        ModelAndView modelAndView = new ModelAndView("objective/edit");
         modelAndView.addObject("gameList", gameList);
-        modelAndView.addObject("command", episode);
+        modelAndView.addObject("episodeList", episodeList);
+        modelAndView.addObject("command", objective);
 
         return modelAndView;
     }
 
-    @RequestMapping(value = "/episode/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/objective/save", method = RequestMethod.POST)
     public String save(final @ModelAttribute("command") @Valid Episode episode,
                        BindingResult result, Model model, HttpSession session) {
 
         if (result.hasErrors()) {
-            return "episode/edit";
+            return "objective/edit";
         }
 
         try {
@@ -121,12 +133,12 @@ public class EpisodeController extends AbstractAdminController {
         } catch (RuntimeException re) {
             pageFrameworkService.setFlashMessage(session, re.getMessage());
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-            return "redirect:/episode/list";
+            return "redirect:/objective/list";
         }
-        return "redirect:/episode/list";
+        return "redirect:/objective/list";
     }
 
-    @RequestMapping(value = "/episode/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/objective/delete/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id, HttpSession session) {
 
         Episode episode = episodeService.findEntityById(id);
@@ -136,13 +148,13 @@ public class EpisodeController extends AbstractAdminController {
             } catch (RuntimeException re) {
                 pageFrameworkService.setFlashMessage(session, re.getMessage());
                 pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
-                return "redirect:/episode/show/" + id;
+                return "redirect:/objective/show/" + id;
             }
         } else {
-            pageFrameworkService.setFlashMessage(session, "No Box with that id");
+            pageFrameworkService.setFlashMessage(session, "No Objective with that id");
             pageFrameworkService.setIsRedirect(session, Boolean.TRUE);
         }
 
-        return "redirect:/episode/list";
+        return "redirect:/objective/list";
     }
 }

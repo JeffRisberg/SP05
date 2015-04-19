@@ -8,21 +8,22 @@
 
 <div class="row" style="padding-top: 8px">
     <div class="col-md-6" style="font-size: 16px; font-weight: bold">
-        Find, edit, and create your Episodes
+        Find, edit, and create your objectives.
     </div>
     <div class="col-md-6">
-        <a href="<c:url value="/episode/create" />" class="pull-right btn btn-default" style="padding: 0px 10px">
-            Create New Episode &raquo
+        <a href="<c:url value="/objective/create" />" class="pull-right btn btn-default" style="padding: 0px 10px">
+            Create New Objective &raquo
         </a>
     </div>
 </div>
-<div id="episodeResults">
+<div id="objectiveResults">
     <div class="list">
         <table class="table">
             <thead>
             <tr>
                 <th>Game</th>
-                <th>Title</th>
+                <th>Episode</th>
+                <th>Name</th>
                 <th>Seq #</th>
                 <th>MinScorePoints</th>
                 <th>Date Created</th>
@@ -31,27 +32,28 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="episode" items="${episodeList}" varStatus="rowCounter">
+            <c:forEach var="objective" items="${objectiveList}" varStatus="rowCounter">
                 <tr class="${rowCounter.count % 2 == 0 ? 'even' : 'odd'}">
-                    <td>${episode.game.name}</td>
+                    <td>${objective.episode.game.name}</td>
+                    <td>${objective.episode.title}</td>
                     <td>
-                        <a href="<c:url value="/episode/show/${episode.id}" />">${episode.title}</a>
+                        <a href="<c:url value="/objective/show/${objective.id}" />">${objective.name}</a>
                     </td>
-                    <td>${episode.seqNum}</td>
-                    <td>${episode.minScorePoints}</td>
-                    <td>${episode.dateCreated}</td>
-                    <td>${episode.lastUpdated}</td>
+                    <td>${objective.seqNum}</td>
+                    <td>${objective.minScorePoints}</td>
+                    <td>${objective.dateCreated}</td>
+                    <td>${objective.lastUpdated}</td>
                     <td>
                         <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/episode/edit/${episode.id}" />">Edit</a>
+                           href="<c:url value="/objective/edit/${objective.id}" />">Edit</a>
                         <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/episode/delete/${episode.id}" />">Delete</a>
+                           href="<c:url value="/objective/delete/${objective.id}" />">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
-            <c:if test="${empty episodeList}">
+            <c:if test="${empty objectiveList}">
                 <tr>
-                    <td colspan="999">No episodes found</td>
+                    <td colspan="999">No objectives found</td>
                 </tr>
             </c:if>
             </tbody>

@@ -34,16 +34,6 @@
         <put-attribute name="body" value="/WEB-INF/views/home/{1}.jsp"/>
     </definition>
 
-    <definition name="adminHome/*" extends="standardLayout">
-        <put-attribute name="title" value="Admin Home"/>
-        <put-attribute name="body" value="/WEB-INF/views/adminHome/{1}.jsp"/>
-    </definition>
-
-    <definition name="user/*" extends="standardLayout">
-        <put-attribute name="title" value="Users"/>
-        <put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"/>
-    </definition>
-
     <definition name="game/*" extends="standardLayout">
         <put-attribute name="title" value="Games"/>
         <put-attribute name="body" value="/WEB-INF/views/game/{1}.jsp"/>
@@ -52,6 +42,21 @@
     <definition name="episode/*" extends="standardLayout">
         <put-attribute name="title" value="Episodes"/>
         <put-attribute name="body" value="/WEB-INF/views/episode/{1}.jsp"/>
+    </definition>
+
+    <definition name="objective/*" extends="standardLayout">
+        <put-attribute name="title" value="Objectives"/>
+        <put-attribute name="body" value="/WEB-INF/views/objective/{1}.jsp"/>
+    </definition>
+
+    <definition name="user/*" extends="standardLayout">
+        <put-attribute name="title" value="Users"/>
+        <put-attribute name="body" value="/WEB-INF/views/user/{1}.jsp"/>
+    </definition>
+
+    <definition name="adminHome/*" extends="standardLayout">
+        <put-attribute name="title" value="Admin Home"/>
+        <put-attribute name="body" value="/WEB-INF/views/adminHome/{1}.jsp"/>
     </definition>
 
 </tiles-definitions>

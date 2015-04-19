@@ -27,11 +27,6 @@ public class UserController {
                 (Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), false));
     }
 
-    @RequestMapping("/")
-    public String index() {
-        return "redirect:/user";
-    }
-
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 

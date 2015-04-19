@@ -26,11 +26,29 @@
 <div id="header">
     <tiles:insertAttribute name="header"/>
 </div>
-<div id="content">
-    <div class="container">
-        <tiles:insertAttribute name="body"/>
+
+<div class="mainMenu navbar navbar-fixed-top" role="navigation" style="margin-top: 40px; background: #d6d6d6;">
+    <div class="navbar-inner">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/game">Games</a>
+                </li>
+                <li>
+                    <a href="/episode">Episodes</a>
+                </li>
+                <li>
+                    <a href="/objective">Objectives</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
+<div class="container" style="margin-top: 55px">
+    <tiles:insertAttribute name="body"/>
+</div>
+
 <div id="footer">
     <tiles:insertAttribute name="footer"/>
 </div>

@@ -44,8 +44,13 @@ public class GameController extends AbstractAdminController {
                 (Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"), false));
     }
 
-    @RequestMapping(value = "/game/**")
+    @RequestMapping("/")
     public String index() {
+        return "redirect:/game";
+    }
+
+    @RequestMapping(value = "/game/**")
+    public String listGames() {
         return "redirect:/game/list";
     }
 
