@@ -31,19 +31,14 @@
             <td><form:errors path="title" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>Row Index:</td>
-            <td><form:input path="rowIndex" size="40"/></td>
-            <td><form:errors path="rowIndex" cssClass="error"/></td>
+            <td>Seq Num:</td>
+            <td><form:input path="seqNum" size="40"/></td>
+            <td><form:errors path="seqNum" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>Col Index:</td>
-            <td><form:input path="colIndex" size="40"/></td>
-            <td><form:errors path="colIndex" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td>Width:</td>
-            <td><form:input path="width" size="40"/></td>
-            <td><form:errors path="width" cssClass="error"/></td>
+            <td>MinScorePoints:</td>
+            <td><form:input path="minScorePoints" size="40"/></td>
+            <td><form:errors path="minScorePoints" cssClass="error"/></td>
         </tr>
     </table>
 
