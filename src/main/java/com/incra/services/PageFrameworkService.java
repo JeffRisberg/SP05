@@ -32,11 +32,9 @@ public class PageFrameworkService {
     public PageFrameworkService() {
         this.menuItems = new ArrayList<MenuItem>();
 
-        this.menuItems.add(new MenuItem("Home", "/home", true));
-        this.menuItems.add(new MenuItem("Products", "/product/list", true));
-        this.menuItems.add(new MenuItem("Customers", "/customer/list", true));
-        this.menuItems.add(new MenuItem("Sales Orders", "/salesOrder/list", true));
-        this.menuItems.add(new MenuItem("Projects", "/project/list", true));
+        this.menuItems.add(new MenuItem("Games", "/game/list", true));
+        this.menuItems.add(new MenuItem("Episodes", "/episode/list", true));
+        this.menuItems.add(new MenuItem("Objectives", "/objective/list", true));
     }
 
     /**

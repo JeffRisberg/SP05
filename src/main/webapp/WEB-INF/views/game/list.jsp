@@ -22,7 +22,8 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Custom CSS</th>
+                <th>Active</th>
+                <th style="text-align:right">Download Price</th>
                 <th>Date Created</th>
                 <th>Last Updated</th>
                 <th>Action</th>
@@ -34,12 +35,11 @@
                     <td>
                         <a href="<c:url value="/game/show/${game.id}" />">${game.name}</a>
                     </td>
-                    <td>${game.customCSS}</td>
+                    <td>${game.active}</td>
+                    <td style="text-align:right">${game.downloadPrice}</td>
                     <td>${game.dateCreated}</td>
                     <td>${game.lastUpdated}</td>
                     <td>
-                        <a class="btn btn-default" style="padding: 0px 10px"
-                           href="<c:url value="/page/${game.id}" />">View</a>
                         <a class="btn btn-default" style="padding: 0px 10px"
                            href="<c:url value="/game/edit/${game.id}" />">Edit</a>
                         <a class="btn btn-default" style="padding: 0px 10px"

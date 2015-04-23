@@ -24,7 +24,7 @@
                 <th>Game</th>
                 <th>Title</th>
                 <th>Seq #</th>
-                <th>MinScorePoints</th>
+                <th>Min Points</th>
                 <th>Date Created</th>
                 <th>Last Updated</th>
                 <th>Action</th>

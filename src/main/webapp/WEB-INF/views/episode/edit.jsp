@@ -12,7 +12,7 @@
     <div class="message">${flashMessage}</div>
 </c:if>
 
-<c:url var="saveUrl" value="/box/save"/>
+<c:url var="saveUrl" value="/episode/save"/>
 <form:form method="post" action="${saveUrl}">
     <form:hidden path="id"/>
     <table>
@@ -36,7 +36,7 @@
             <td><form:errors path="seqNum" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>MinScorePoints:</td>
+            <td>Min Score Points:</td>
             <td><form:input path="minScorePoints" size="40"/></td>
             <td><form:errors path="minScorePoints" cssClass="error"/></td>
         </tr>

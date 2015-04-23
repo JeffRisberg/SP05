@@ -26,14 +26,12 @@ public class Episode extends AbstractDatedDatabaseItem {
     @JoinColumn(name = "game_id", nullable = false)
     private Game game;
 
-    @Basic
     @Column(name = "seq_num")
     private Integer seqNum;
 
-    @Basic
+    @Column(name = "min_score_points")
     private Integer minScorePoints;
 
-    @Basic
     @Column(name = "image_file_name", nullable = true)
     private String imageFileName;
 

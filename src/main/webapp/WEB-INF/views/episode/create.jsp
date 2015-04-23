@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url var="saveUrl" value="/site/save"/>
+<c:url var="saveUrl" value="/episode/save"/>
 <form:form method="post" action="${saveUrl}">
     <form:hidden path="id"/>
     <table>
@@ -26,7 +26,7 @@
             <td><form:errors path="seqNum" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>MinScorePoints:</td>
+            <td>Min Score Points:</td>
             <td><form:input path="minScorePoints" size="40"/></td>
             <td><form:errors path="minScorePoints" cssClass="error"/></td>
         </tr>

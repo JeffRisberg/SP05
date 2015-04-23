@@ -12,11 +12,14 @@ import java.util.List;
 @Table(name = "game")
 public class Game extends AbstractDatedDatabaseItem {
 
-    @Basic
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "custom_css")
-    private String customCSS;
+    @Column(name = "active")
+    private Boolean active;
+
+    @Column(name = "download_price")
+    private Double downloadPrice;
 
     @OneToMany(mappedBy = "game")
     private List<Episode> episodes;
@@ -29,12 +32,20 @@ public class Game extends AbstractDatedDatabaseItem {
         this.name = name;
     }
 
-    public String getCustomCSS() {
-        return customCSS;
+    public Boolean getActive() {
+        return active;
     }
 
-    public void setCustomCSS(String customCSS) {
-        this.customCSS = customCSS;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Double getDownloadPrice() {
+        return downloadPrice;
+    }
+
+    public void setDownloadPrice(Double downloadPrice) {
+        this.downloadPrice = downloadPrice;
     }
 
     public List<Episode> getEpisodes() {

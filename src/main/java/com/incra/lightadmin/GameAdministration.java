@@ -12,7 +12,7 @@ import org.lightadmin.api.config.unit.ScreenContextConfigurationUnit;
 /**
  * Created by Jeffrey Risberg on 2/4/2015.
  */
-public class SiteAdministration extends AdministrationConfiguration<Game> {
+public class GameAdministration extends AdministrationConfiguration<Game> {
 
     public EntityMetadataConfigurationUnit configuration(EntityMetadataConfigurationUnitBuilder configurationBuilder) {
         return configurationBuilder.nameField("name").build();
@@ -20,20 +20,20 @@ public class SiteAdministration extends AdministrationConfiguration<Game> {
 
     public ScreenContextConfigurationUnit screenContext(ScreenContextConfigurationUnitBuilder screenContextBuilder) {
         return screenContextBuilder
-                .screenName("Site Administration").build();
+                .screenName("Game Administration").build();
     }
 
     public FieldSetConfigurationUnit listView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
                 .field("name").caption("Name")
-                .field("customCSS").caption("Custom CSS")
+                .field("downloadPrice").caption("Download Price")
                 .build();
     }
 
     public FieldSetConfigurationUnit quickView(final FieldSetConfigurationUnitBuilder fragmentBuilder) {
         return fragmentBuilder
                 .field("name").caption("Name")
-                .field("customCSS").caption("Custom CSS")
+                .field("downloadPrice").caption("Download Price")
                 .field("dateCreated").caption("Date Created")
                 .field("lastUpdated").caption("Last Updated")
                 .build();
@@ -43,7 +43,7 @@ public class SiteAdministration extends AdministrationConfiguration<Game> {
         return fragmentBuilder
                 .field("id").caption("Id")
                 .field("name").caption("Name")
-                .field("customCSS").caption("Custom CSS")
+                .field("downloadPrice").caption("Download Price")
                 .field("dateCreated").caption("Date Created")
                 .field("lastUpdated").caption("Last Updated")
                 .build();

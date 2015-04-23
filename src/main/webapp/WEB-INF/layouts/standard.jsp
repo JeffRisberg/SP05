@@ -31,15 +31,31 @@
     <div class="navbar-inner">
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="<c:url value="/game" />">Games</a>
+
+                <c:set var="className" scope="page" value="inactive"/>
+                <c:if test="${PF_CURRENT_MENU_ITEM.label == 'Games'}">
+                    <c:set var="className" scope="page" value="active"/>
+                </c:if>
+                <li class="${className}">
+                    <a href="<c:url value="/game/list" />">Games</a>
                 </li>
-                <li>
-                    <a href="<c:url value="/episode" />">Episodes</a>
+
+                <c:set var="className" scope="page" value="inactive"/>
+                <c:if test="${PF_CURRENT_MENU_ITEM.label == 'Episodes'}">
+                    <c:set var="className" scope="page" value="active"/>
+                </c:if>
+                <li class="${className}">
+                    <a href="<c:url value="/episode/list" />">Episodes</a>
                 </li>
-                <li>
-                    <a href="<c:url value="/objective" />">Objectives</a>
+
+                <c:set var="className" scope="page" value="inactive"/>
+                <c:if test="${PF_CURRENT_MENU_ITEM.label == 'Objectives'}">
+                    <c:set var="className" scope="page" value="active"/>
+                </c:if>
+                <li class="${className}">
+                    <a href="<c:url value="/objective/list" />">Objectives</a>
                 </li>
+
             </ul>
         </div>
     </div>

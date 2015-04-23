@@ -11,8 +11,12 @@
         <td>${game.name}</td>
     </tr>
     <tr>
-        <td>Custom CSS:</td>
-        <td>${game.customCSS}</td>
+        <td>Active:</td>
+        <td>${game.active}</td>
+    </tr>
+    <tr>
+        <td>Download Price:</td>
+        <td>${game.downloadPrice}</td>
     </tr>
     <tr>
         <td>Date Created:</td>
@@ -35,5 +39,5 @@
 </c:if>
 
 <div class="botButtons">
-    <a href="<c:url value="/game/${game.id}" />" class="btn btn-default">Edit</a>
+    <a href="<c:url value="/game/edit/${game.id}" />" class="btn btn-default">Edit</a>
 </div>

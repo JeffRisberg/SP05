@@ -7,7 +7,7 @@
 
 <table class="table">
     <tr>
-        <td>Site:</td>
+        <td>Game:</td>
         <td>${episode.game.name}</td>
     </tr>
     <tr>
@@ -19,7 +19,7 @@
         <td>${episode.seqNum}</td>
     </tr>
     <tr>
-        <td>MinScorePoints:</td>
+        <td>Min Score Points:</td>
         <td>${episode.minScorePoints}</td>
     </tr>
 </table>
