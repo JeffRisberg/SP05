@@ -25,6 +25,8 @@
         <module name="SP05" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SP05" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
-
