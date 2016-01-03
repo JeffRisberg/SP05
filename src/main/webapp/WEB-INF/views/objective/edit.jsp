@@ -17,13 +17,13 @@
     <form:hidden path="id"/>
     <table>
         <tr>
-            <td>Game:</td>
+            <td>Episode:</td>
             <td>
-                <form:select path="game">
-                    <form:options items="${gameList}" itemValue="id" itemLabel="name"/>
+                <form:select path="episode">
+                    <form:options items="${episodeList}" itemValue="id" itemLabel="title"/>
                 </form:select>
             </td>
-            <td><form:errors path="title" cssClass="error"/></td>
+            <td><form:errors path="episode" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Title:</td>
