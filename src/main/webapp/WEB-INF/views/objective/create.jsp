@@ -16,24 +16,9 @@
             <td><form:errors path="episode" cssClass="error"/></td>
         </tr>
         <tr>
-            <td>Title:</td>
-            <td><form:input path="title" size="40"/></td>
-            <td><form:errors path="title" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td>Row Index:</td>
-            <td><form:input path="rowIndex" size="40"/></td>
-            <td><form:errors path="rowIndex" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td>Col Index:</td>
-            <td><form:input path="colIndex" size="40"/></td>
-            <td><form:errors path="colIndex" cssClass="error"/></td>
-        </tr>
-        <tr>
-            <td>Width:</td>
-            <td><form:input path="width" size="40"/></td>
-            <td><form:errors path="width" cssClass="error"/></td>
+            <td>Name:</td>
+            <td><form:input path="name" size="40"/></td>
+            <td><form:errors path="name" cssClass="error"/></td>
         </tr>
     </table>
 
